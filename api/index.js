@@ -1,12 +1,13 @@
-import express from "express"
-import dotenv from"dotenv"
-import mongoose from"mongoose"
-import authRoute from "./routes/auth.js"
-import usersRoute from "./routes/users.js"
-import attractionRoute from "./routes/attraction.js"
-import detailedRoute from "./routes/detailed.js"
-const app = express()
-dotenv.config()
+import express from "express";
+import dotenv from"dotenv";
+import mongoose from"mongoose";
+import authRoute from "./routes/auth.js";
+import usersRoute from "./routes/users.js";
+import attractionRoute from "./routes/attraction.js";
+import detailedRoute from "./routes/detailed.js";
+import cors from "cors";
+const app = express();
+dotenv.config();
 
 const connect = async () => {
 try {
@@ -23,8 +24,9 @@ mongoose.connection.on("disconnected", ()=>{
 mongoose.connection.on("connected",()=>{
     console.log("mongodb connected")});
 
-app.use(express.json())
 
+app.use(cors())
+app.use(express.json())
 app.use("/api/auth",authRoute);
 app.use("/api/users",usersRoute);
 app.use("/api/attraction",attractionRoute);

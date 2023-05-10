@@ -47,3 +47,15 @@ export const getallAttraction = async (req,res,next)=>{
         next(err);
     }
 }
+
+export const countAttractionByname = async (req,res,next)=>{
+    const attractions = req.query.attractions.split(",");
+    try{
+        const list =await Promise.all(attractions.map(location_name=>{
+            return attraction.countDocuments({location_name:location_name});
+        }));
+        res.status(200).json(list)
+    }catch (err){
+        next(err);
+    }
+}

@@ -1,8 +1,7 @@
 import express from "express";
 import attraction from "../model/attraction.js";
 import { createError } from "../ultis/error.js";
-import { createAttraction, deleteAttraction, getAttraction, getallAttraction, updateAttraction } from "../controller/attraction.js";
-
+import {countAttractionByname, createAttraction, deleteAttraction, getAttraction, getallAttraction, updateAttraction } from "../controller/attraction.js";
 const router = express.Router();
 
 // Demo lệnh create
@@ -15,7 +14,9 @@ router.put("/:id",updateAttraction);
 router.delete("/:id",deleteAttraction);
 
 // Demo lệnh get
-router.get("/:id",getAttraction);
+router.get("/find/:id",getAttraction);
+router.get("/countAttractionByname",countAttractionByname);
+router.get("/countByType",getAttraction);
 //demo lệnh get all
 router.get("/",getallAttraction);
 
